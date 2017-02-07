@@ -1,0 +1,47 @@
+
+<div *ngIf="employee">
+    <h2><span jhiTranslate="empjhip402App.employee.detail.title">Employee</span> {{employee.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row">
+        <dt><span jhiTranslate="empjhip402App.employee.firstName">First Name</span></dt>
+        <dd>
+            <span>{{employee.firstName}}</span>
+        </dd>
+        <dt><span jhiTranslate="empjhip402App.employee.lastName">Last Name</span></dt>
+        <dd>
+            <span>{{employee.lastName}}</span>
+        </dd>
+        <dt><span jhiTranslate="empjhip402App.employee.active">Active</span></dt>
+        <dd>
+            <span>{{employee.active}}</span>
+        </dd>
+        <dt><span jhiTranslate="empjhip402App.employee.startDate">Start Date</span></dt>
+        <dd>
+            <span>{{employee.startDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="empjhip402App.employee.title">Title</span></dt>
+        <dd>
+            <span>{{employee.title}}</span>
+        </dd>
+        <dt><span jhiTranslate="empjhip402App.employee.department">Department</span></dt>
+        <dd>
+            <div *ngIf="employee.departmentId">
+                <a [routerLink]="['department', employee.departmentId]">{{employee.departmentDeptCode}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'employee/'+ employee.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

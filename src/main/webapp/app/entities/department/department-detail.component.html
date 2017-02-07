@@ -1,0 +1,35 @@
+
+<div *ngIf="department">
+    <h2><span jhiTranslate="empjhip402App.department.detail.title">Department</span> {{department.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row">
+        <dt><span jhiTranslate="empjhip402App.department.deptCode">Dept Code</span></dt>
+        <dd>
+            <span>{{department.deptCode}}</span>
+        </dd>
+        <dt><span jhiTranslate="empjhip402App.department.deptName">Dept Name</span></dt>
+        <dd>
+            <span>{{department.deptName}}</span>
+        </dd>
+        <dt><span jhiTranslate="empjhip402App.department.company">Company</span></dt>
+        <dd>
+            <div *ngIf="department.companyId">
+                <a [routerLink]="['company', department.companyId]">{{department.companyCompanyName}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'department/'+ department.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
